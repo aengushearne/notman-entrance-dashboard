@@ -34,11 +34,11 @@ body.landscape {
 
 body.campus-1 #timenow {
     background: transparent;
-    color: black;
+    color: white;
 }
 
 body.campus-1 {
-    background: url(/images/backgrounds/snow-man-592024_960_720.jpg);
+    background: url(/images/backgrounds/forest.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -49,13 +49,19 @@ body.campus-2 {
     background-size: cover;
 }
 
+body.fronthouse {
+    background: url(/images/backgrounds/1359714833HP9.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 body.campus-2 #timenow {
     background: transparent;
     color: white;
 }
 
 body.entrance {
-    background-image: url(../images/backgrounds/winter-snowflakes.jpg);
+    background-image: url(../images/backgrounds/Spring-ray-of-lights-white-wild-flowers-tree-nature-ultra-4k-1080x1920.jpg);
 }
 
 body.entrance #timenow {
@@ -203,7 +209,7 @@ h3 {
     color: white;
     white-space: nowrap;
     display: inline-block;
-    width: 170px;
+    width: 190px;
     text-align: center;
     text-transform: uppercase;
     /* default color */
@@ -270,6 +276,11 @@ h3 {
     color: black;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.9);
+}
+
+#date-panel {
+    font-size: 120%;
+    background-color: transparent;
 }
 
 #datenow {
@@ -398,6 +409,20 @@ footer {
 }
 
 
+/* -- Bixi card ------------------------ */
+
+#bixi-card .logo {
+    position: absolute;
+    left: 80px;
+    width: 160px;
+}
+
+#bixi-card .text {
+    text-align: left;
+    margin-left: 220px;
+}
+
+
 /* -- Directory card ------------------ */
 
 .Card.directory span.room {
@@ -423,4 +448,8 @@ footer {
 .Card.directory h2 {
     margin-top: 0px;
     margin-bottom: 0px;
+}
+
+.Card.TwitterCard {
+    height: 550px;
 }

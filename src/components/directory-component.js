@@ -7,12 +7,12 @@ let strings = new LocalizedStrings({
     en: {
         directory: 'Floor Directory',
         room: 'Room',
-        occupant: 'Occupant',        
+        occupant: 'Occupant',
     },
     fr: {
-        directory: 'Annuaire',        
+        directory: 'Annuaire',
         room: 'Salle',
-        occupant: 'Occupant',        
+        occupant: 'Occupant',
     }
 });
 
@@ -23,8 +23,15 @@ export default class DirectoryComponent extends React.Component {
 
         this.state = {
             location: this.props.location,
-            occupants: []
+            occupants: [],
+            lang: props.lang
         };
+
+        strings.setLanguage(props.lang);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        strings.setLanguage(nextProps.lang);
     }
 
     createRooms(entry) {
@@ -41,9 +48,12 @@ export default class DirectoryComponent extends React.Component {
         var requestUrl = url.parse(this.fetchUrl);
 
         requestUrl.query = {
-            floor: this.props.floor,
-            building: this.props.building            
+            building: this.props.building
         };
+
+        if (this.props.floor) {
+            requestUrl.query.floor = this.props.floor;
+        }
 
         fetch(url.format(requestUrl))
             .then(response => response.json())
@@ -57,7 +67,16 @@ export default class DirectoryComponent extends React.Component {
     componentWillMount() {
         this.fetchUrl = 'http://notman.herokuapp.com/api/directory';
         this.updateOcupantData();
-        this.refreshIntervalMinutes = 60 * 4; // Every four hours
+        this.refreshIntervalMinutes = 60; // Every hour
+    }
+
+    componentDidMount() {
+        let scope = this;
+        window
+            .setInterval(function () {
+                scope.updateOcupantData();
+            }, (this.refreshIntervalSeconds * 1000));
+
     }
 
     render() {
